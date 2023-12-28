@@ -19,10 +19,10 @@ return new class extends Migration {
             $table->boolean('is_installment')->default(false)->nullable();
             $table->integer('recurring_period')->nullable();
             $table->integer('installment_period')->nullable();
-            $table->string('spending');
-            $table->string('total');
+            $table->integer('spending');
+            $table->integer('total');
             $table->enum('type', ['expense', 'income']);
-            $table->foreignId('category_id')->constrained()->nullable();
+            $table->foreignId('category_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

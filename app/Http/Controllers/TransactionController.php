@@ -16,19 +16,31 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate([
+            'date' => 'required|date',
+            'note' => 'string|nullable',
+            'attachment' => 'string|nullable',
+            'is_recurring' => 'boolean|nullable',
+            'is_installment' => 'boolean|nullable',
+            'recurring_period' => 'integer|nullable',
+            'installment_period' => 'integer|nullable',
+            'spending' => 'required|integer',
+            'total' => 'required|integer',
+            'type' => 'required|in:expense,category'
+        ]);
+
+        Transaction::create($validatedRequest);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'successfully created transaction',
+            'transaction' => $validatedRequest
+        ]);
+
     }
 
     /**
