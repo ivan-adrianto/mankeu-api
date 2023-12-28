@@ -1,0 +1,88 @@
+const transaction = [
+  // array of transaction based on dates
+  {
+    date: "",
+    totalSpending: "",
+    totalIncome: "",
+    transactions: [
+      {
+        category: {
+          name: "",
+          image: "",
+          id: "",
+        },
+        note: "",
+        attachment: "",
+        isRecurring: true,
+        isInstallment: true,
+        recurringPeriod: "",
+        installmentPeriod: "",
+        type: "expense|income",
+        transferFrom: "",
+        transferTo: "",
+        transferFee: "",
+      },
+    ],
+  },
+];
+
+const calendars = [
+  {
+    date: "",
+    spending: "",
+    income: "",
+  },
+];
+const monthly = [
+  {
+    month: "",
+    spending: "",
+    income: "",
+    weekly: {
+      span: "",
+      spending: "",
+      income: "",
+    },
+  },
+];
+
+const graphs = [
+  {
+    year: "",
+    monthly: [
+      {
+        month: "October",
+        spending: {
+          total: "",
+          categories: [
+            {
+              name: "",
+              icon: "",
+              percentage: "",
+              total,
+            },
+          ],
+        },
+        spending: {
+          total: "",
+          categories: [
+            {
+              name: "",
+              icon: "",
+              percentage: "",
+              total,
+            },
+          ],
+        },
+      },
+    ],
+  },
+];
+
+const user = {
+  name: "",
+  email: "",
+  password: "",
+  photo: "",
+  membership: ""
+}
