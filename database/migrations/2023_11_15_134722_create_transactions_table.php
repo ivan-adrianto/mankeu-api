@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->integer('spending');
             $table->integer('total');
             $table->enum('type', ['expense', 'income']);
-            $table->foreignId('category_id')->nullable()->constrained();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

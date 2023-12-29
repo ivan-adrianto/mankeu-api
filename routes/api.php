@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -26,3 +27,5 @@ Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
 Route::post('/transactions', [TransactionController::class, 'store'])->middleware('auth');
 
+Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth');
+Route::get('/categories', [CategoryController::class, 'show'])->middleware('auth');

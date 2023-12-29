@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,19 +17,27 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate([
+            'name' => 'required|string',
+            'icon' => 'image|file|max:1024'
+        ]);
+
+        if ($request->file('icon')) {
+            $validatedRequest['icon'] = $request->file('icon')->store('/images');
+        }
+        $user = Auth::user();
+        $validatedRequest['user_id'] = $user->getAuthIdentifier();
+        Category::create($validatedRequest);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'successfully created category',
+            'category' => $validatedRequest
+        ]);
     }
 
     /**
@@ -36,7 +45,15 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $user = Auth::user();
+        $categories = Category::where('user_id', null)
+        ->orWhere('user_id', $user->id)
+        ->get();
+        return response()->json([
+            'status' => 'success',
+            'categories' => $categories
+        ]);
+
     }
 
     /**
