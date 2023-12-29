@@ -29,3 +29,5 @@ Route::post('/transactions', [TransactionController::class, 'store'])->middlewar
 
 Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth');
 Route::get('/categories', [CategoryController::class, 'show'])->middleware('auth');
+Route::put('/categories/{categoryId}', [CategoryController::class, 'update'])->middleware('auth');
+Route::delete('/categories/{categoryId}', [CategoryController::class, 'destroy'])->middleware('auth');
